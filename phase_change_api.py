@@ -53,8 +53,7 @@ async def get_phase_change_diagram(
     pressure: float = Query(
         ..., 
         description="Presión en las unidades del sistema",
-        ge=0,  # Mayor o igual a 0
-        example=5.0
+        ge=0  # Mayor o igual a 0
     )
 ):
     """
