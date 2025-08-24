@@ -12,7 +12,7 @@ app = FastAPI(
 
 # Modelo de respuesta
 class PhaseChangeResponse(BaseModel):
-    #pressure: float
+    pressure: float
     specific_volume_liquid: float
     specific_volume_vapor: float
 
@@ -51,7 +51,6 @@ async def health_check():
 @app.get("/phase-change-diagram", response_model=PhaseChangeResponse)
 async def get_phase_change_diagram(
     pressure: float = Query(
-        ..., 
         description="Presión en las unidades del sistema",
         ge=0  # Mayor o igual a 0
     )
@@ -76,7 +75,7 @@ async def get_phase_change_diagram(
             raise ValueError("Cálculo inválido")
             
         return PhaseChangeResponse(
-            #pressure=pressure,
+            pressure=pressure,
             specific_volume_liquid=round(specific_volume_liquid, 6),
             specific_volume_vapor=round(specific_volume_vapor, 6)
         )
